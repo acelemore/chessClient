@@ -13,10 +13,12 @@ cLobby::cLobby(QWidget *parent, network* net, QString token,QString player) :
     this->token = token;
     this->player = player;
     ui->pushButton_4->setEnabled(false);
+    refresh();
 }
 
 cLobby::~cLobby()
 {
+    net->disconnectFromServer();
     delete ui;
 }
 

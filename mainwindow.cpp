@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     setWindowFlags(Qt::CustomizeWindowHint|Qt::WindowTitleHint);
+    ui->stackedWidget->setCurrentIndex(0);
 }
 
 MainWindow::~MainWindow()
@@ -50,6 +51,7 @@ void MainWindow::on_pbSinWhite_clicked()
     });
     this->setEnabled(false);
     singleRound->show();
+    singleRound->begin();
 }
 
 void MainWindow::on_pbSinBlack_clicked()
@@ -66,6 +68,12 @@ void MainWindow::on_pbSinBlack_clicked()
 
 void MainWindow::on_pbLogin_clicked()//登陆
 {
+    int ret = mChessNet.connectToServer();
+    if(ret == -1)
+    {
+        QMessageBox::information(this,"错误","无法连接到服务器");
+        return;
+    }
 RELOGIN:
     QString name = ui->leUsrName->text();
     QString pass = ui->lePasW->text();

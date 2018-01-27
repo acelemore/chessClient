@@ -1,10 +1,7 @@
 <RCC>
     <qresource prefix="/new/prefix1">
         <file>TIM截图20171109183131.png</file>
-        <file>image/blackChess.png</file>
-        <file>image/whiteChess.png</file>
         <file>image/Frame.jpg</file>
-        <file>image/stop.png</file>
         <file>image/black.png</file>
         <file>image/white.png</file>
         <file>image/back.png</file>

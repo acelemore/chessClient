@@ -13,6 +13,8 @@ public:
     QString sendMsg(QString content);
     void startListen();
     void stopListen();
+    int connectToServer();
+    int disconnectFromServer();
     QString sendMsgNoReply(QString content);
 signals:
     void getMsg(QString);

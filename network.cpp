@@ -2,12 +2,7 @@
 
 network::network(QObject *parent) : QObject(parent)
 {
-    socket = new QTcpSocket(this);
-    socket->connectToHost(ChessServerIP,ChessServerPort);
-    if(!socket->waitForConnected(3000))
-    {
-        myDebug<<socket->error();
-    }
+    socket = new QTcpSocket(this);    
 }
 
 QString network::sendMsg(QString content)
@@ -43,6 +38,21 @@ void network::startListen()
 void network::stopListen()
 {
     disconnect(socket,&QTcpSocket::readyRead,this,0);
+}
+
+int network::connectToServer()
+{
+    socket->connectToHost(ChessServerIP,ChessServerPort);
+    if(!socket->waitForConnected(3000))
+    {
+        return -1;
+    }
+    return 0;
+}
+
+int network::disconnectFromServer()
+{
+    socket->disconnectFromHost();
 }
 
 QString network::readRecv()
